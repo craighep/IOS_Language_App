@@ -9,12 +9,13 @@
 import UIKit
 import CoreData
 
-class PhraseViewController: UITableViewController {
+class PhraseViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
+    lazy var managedContext: NSManagedObjectContext = {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        return appDelegate.managedObjectContext!
+    }()
     var fetchedResultsController: NSFetchedResultsController!
-    var managedContext: NSManagedObjectContext?
-
-    var phrases: [Phrase] = PhrasesData().phrases
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,47 +23,54 @@ class PhraseViewController: UITableViewController {
         
         // DB THINGS -------
         
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        managedContext = appDelegate.managedObjectContext
+        let fetchRequest = NSFetchRequest(entityName: "Phrase")
+        let fetchSort = NSSortDescriptor(key: "english", ascending: true)
+        fetchRequest.sortDescriptors = [fetchSort]
         
-        let fetchRequest = NSFetchRequest(entityName: "Phrases")
-        fetchRequest.sortDescriptors = [
-            NSSortDescriptor(key: "english", ascending: true)
-        ]
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,
-            managedObjectContext: managedContext!, sectionNameKeyPath: "english", cacheName: nil)
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedContext, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController.delegate = self
         
         do {
             try fetchedResultsController.performFetch()
+            
         } catch let error as NSError {
-            print("There was an error trying to access Speakers: \(error)")
+            print("Unable to perform fetch: \(error.localizedDescription)")
         }
-
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
+    
     //MARK: - Table View
     
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        guard let sectionCount = fetchedResultsController.sections?.count else {
+            return 0
+        }
+        return sectionCount
+    }
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return phrases.count
+        guard let sectionData = fetchedResultsController.sections?[section] else {
+            return 0
+        }
+        return sectionData.numberOfObjects
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("PhraseTableViewCell", forIndexPath: indexPath) as! PhraseTableViewCell
         
-        let phrase = phrases[indexPath.row]
+        let phrase = fetchedResultsController.objectAtIndexPath(indexPath) as! Phrase
         cell.englishLabel.text = phrase.english
         cell.welshLabel.text = phrase.welsh
         cell.typeLabel.text = phrase.type
         if phrase.tags.count == 1 {
-            cell.tagsLabel.text = phrase.tags[0].name
+            cell.tagsLabel.text = phrase.tags.anyObject()!.name
         }
         else if phrase.tags.count > 1 {
-            cell.tagsLabel.text = "\(phrase.tags[0].name), ..."
+            cell.tagsLabel.text = "\(phrase.tags.anyObject()!.name), ..."
         }
         else{
             cell.tagsLabel.text = "-"
@@ -70,36 +78,103 @@ class PhraseViewController: UITableViewController {
         return cell
     }
     
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            phrases.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }
-    }
-    
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
     
+    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+        tableView.beginUpdates()
+    }
+    
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        tableView.endUpdates()
+    }
+    
     @IBAction func cancelToPhraseViewController(segue:UIStoryboardSegue) {
     }
     
+    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+        switch type {
+        case .Insert:
+            tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Automatic)
+        case .Update:
+            tableView.reloadSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Automatic)
+        case .Delete:
+            tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Automatic)
+        default: break
+        }
+    }
+    
+    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+        switch type {
+        case .Insert:
+            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Automatic)
+        case .Update:
+            tableView.reloadRowsAtIndexPaths([indexPath!], withRowAnimation: .Automatic)
+        case .Delete:
+            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Automatic)
+        default: break
+        }
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        switch editingStyle {
+        case .Delete:
+            let phrase = fetchedResultsController.objectAtIndexPath(indexPath) as! Phrase
+            managedContext.deleteObject(phrase)
+            do {
+                try managedContext.save()
+            } catch let error as NSError {
+                print("Error saving context after delete: \(error.localizedDescription)")
+            }
+        default:break
+        }
+    }
+    
     @IBAction func unwindToPhraseList(sender: UIStoryboardSegue) {
-        if let sourceViewController = sender.sourceViewController as? PhraseDetailsViewController, phrase = sourceViewController.phrase {
-            if let selectedIndexPath = tableView.indexPathForSelectedRow {
-                // Update an existing phrase.
-                phrases[selectedIndexPath.row] = phrase
-                tableView.reloadRowsAtIndexPaths([selectedIndexPath], withRowAnimation: .None)
+        if let sourceViewController = sender.sourceViewController as? PhraseDetailsViewController {
+            if sourceViewController.phrase != nil{
+                print("edit")
+                do {
+                    try self.managedContext.save()
+                    
+                } catch let error as NSError {
+                    NSLog("Could not save data \(error)")
+                }
             }
             else {
-                // Add a new phrase.
-                let newIndexPath = NSIndexPath(forRow: phrases.count, inSection: 0)
-                phrases.append(phrase)
-                tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
+                let phraseEntity = NSEntityDescription.entityForName("Phrase", inManagedObjectContext: self.managedContext)
+                let phrase = Phrase(entity: phraseEntity!, insertIntoManagedObjectContext: self.managedContext)
+                
+                phrase.english = sourceViewController.englishTextField.text!
+                phrase.welsh = sourceViewController.welshTextField.text!
+                phrase.note = sourceViewController.noteTextField.text
+                switch sourceViewController.typeSegmentControl.selectedSegmentIndex{
+                case 0:
+                    phrase.type = "Verb"
+                case 1:
+                    phrase.type = "Noun"
+                default:
+                    phrase.type = "Unkown"
+                }
+                let tagEntity = NSEntityDescription.entityForName("Tag", inManagedObjectContext: self.managedContext)
+                let tag = Tag(entity: tagEntity!, insertIntoManagedObjectContext: self.managedContext)
+                tag.name = "Work"
+                phrase.addTag(tag)
+                
+                do {
+                    try self.managedContext.save()
+                    
+                } catch let error as NSError {
+                    NSLog("Could not save data \(error)")
+                }
+                print("Added new phrase! count:")
+                print(fetchedResultsController.sections!.count)
             }
         }
     }
@@ -107,18 +182,15 @@ class PhraseViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowDetail" {
             let phraseDetailsViewController = segue.destinationViewController as! PhraseDetailsViewController
-            
             // Get the cell that generated this segue.
             if let selectedPhraseCell = sender as? PhraseTableViewCell {
                 let indexPath = tableView.indexPathForCell(selectedPhraseCell)!
-                let selectedPhrase = phrases[indexPath.row]
+                let selectedPhrase = fetchedResultsController.objectAtIndexPath(indexPath) as! Phrase
                 phraseDetailsViewController.phrase = selectedPhrase
             }
         }
-        else if segue.identifier == "AddItem" {
-            print("Adding new phrase")
-        }
     }
+    
     
 }
 

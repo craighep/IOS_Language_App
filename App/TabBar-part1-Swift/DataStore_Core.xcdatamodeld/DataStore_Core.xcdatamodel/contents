@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="15B42" minimumToolsVersion="Xcode 7.0">
-    <entity name="Phrases" syncable="YES">
+    <entity name="Phrase" representedClassName="LanguageReviser.Phrase" syncable="YES">
         <attribute name="english" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="note" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="welsh" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="tags" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tags" inverseName="phrases" inverseEntity="Tags" syncable="YES"/>
+        <relationship name="tags" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tag" inverseName="phrases" inverseEntity="Tag" syncable="YES"/>
     </entity>
-    <entity name="Tags" syncable="YES">
+    <entity name="Tag" representedClassName="LanguageReviser.Tag" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="phrases" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Phrases" inverseName="tags" inverseEntity="Phrases" syncable="YES"/>
+        <relationship name="phrases" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Phrase" inverseName="tags" inverseEntity="Phrase" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Phrases" positionX="-63" positionY="-18" width="128" height="120"/>
-        <element name="Tags" positionX="-54" positionY="-9" width="128" height="75"/>
+        <element name="Phrase" positionX="-63" positionY="-18" width="128" height="120"/>
+        <element name="Tag" positionX="-54" positionY="-9" width="128" height="75"/>
     </elements>
 </model>

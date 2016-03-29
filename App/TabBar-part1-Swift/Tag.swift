@@ -7,14 +7,15 @@
 //
 
 import Foundation
+import CoreData
 
-class Tag {
+class Tag: NSManagedObject {
     
-    var name: String
+    @NSManaged var name: String
     
-    init(name: String) {
-        self.name = name
-    }
+//    init(name: String) {
+//        self.name = name
+//    }
     
 
 }

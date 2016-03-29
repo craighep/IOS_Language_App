@@ -28,11 +28,12 @@ class PhraseDetailsViewController: UIViewController {
     @IBOutlet weak var otherTagSwitch: UISwitch!
     
     @IBOutlet weak var typeSegmentControl: UISegmentedControl!
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if let phrase = phrase {
+            self.title = "Edit Phrase"
             englishTextField.text = phrase.english
             welshTextField.text = phrase.welsh
             noteTextField.text = phrase.note
@@ -71,25 +72,6 @@ class PhraseDetailsViewController: UIViewController {
     func textFieldDidEndEditing(textField: UITextField) {
         checkValidPhrase()
         navigationItem.title = textField.text
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if saveButton === sender {
-            phrase = Phrase(english: englishTextField.text!, welsh: welshTextField.text!, note: noteTextField.text!, type: "Unknown")
-            phrase!.switchTag("School", enable: schoolTagSwitch.on)
-            phrase!.switchTag("Work", enable: workTagSwitch.on)
-            phrase!.switchTag("Home", enable: homeTagSwitch.on)
-            phrase!.switchTag("Other", enable: otherTagSwitch.on)
-            switch typeSegmentControl.selectedSegmentIndex{
-                case 0:
-                    phrase!.type = "Verb"
-                case 1:
-                    phrase!.type = "Noun"
-                default:
-                    phrase!.type = "Unkown"
-            }
-            
-        }
     }
     
     @IBAction func cancel(sender: UIBarButtonItem) {
