@@ -34,19 +34,28 @@ class ImportViewController: UIViewController{
         let task = session.dataTaskWithRequest(urlRequest) {
             (data, response, error) -> Void in
             
+            guard data != nil else {
+                let alert = UIAlertController(title: "Error!", message: "Invalid address!", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+                return
+            }
+            
             let httpResponse = response as! NSHTTPURLResponse
             let statusCode = httpResponse.statusCode
             // If connection was made and data is returned
             if (statusCode == 200) {
                 do{
-                let json = try NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments)
+                    let json = try NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments)
                     // Send raw json to parse method
-                self.parseJson(json)
+                    self.parseJson(json)
                 }catch {
-                    let alert = UIAlertController(title: "Error!", message: "Phrases could not be imported.", preferredStyle: UIAlertControllerStyle.Alert)
-                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
-                    self.presentViewController(alert, animated: true, completion: nil)
-                    print("Error with Json: \(error)")
+                    NSOperationQueue.mainQueue().addOperationWithBlock {
+                        let alert = UIAlertController(title: "Error!", message: "Phrases could not be imported.", preferredStyle: UIAlertControllerStyle.Alert)
+                        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+                        self.presentViewController(alert, animated: true, completion: nil)
+                        print("Error with Json: \(error)")
+                    }
                 }
             }
         }
