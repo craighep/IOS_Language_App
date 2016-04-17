@@ -10,7 +10,7 @@
 		3216CEB61C9FCB710013135F /* PhraseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3216CEB51C9FCB710013135F /* PhraseDetailsViewController.swift */; };
 		3216CEB91C9FE8AE0013135F /* DataStore_Core.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3216CEB71C9FE8AE0013135F /* DataStore_Core.xcdatamodeld */; };
 		325D797B1CA43F1800DF3013 /* PhraseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325D797A1CA43F1800DF3013 /* PhraseTableViewCell.swift */; };
-		325D797D1CA4A26500DF3013 /*  CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325D797C1CA4A26500DF3013 /*  CheckBox.swift */; };
+		32BD3BED1CC425B5005FB1A7 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32BD3BEC1CC425B5005FB1A7 /* Default-568h@2x.png */; };
 		32F443FC1CAAE87E00AFB45D /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F443FB1CAAE87E00AFB45D /* Question.swift */; };
 		32F443FE1CAB2F1600AFB45D /* RevisionCompletionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F443FD1CAB2F1600AFB45D /* RevisionCompletionViewController.swift */; };
 		6B0699E91AAFA790001F10C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0699E81AAFA790001F10C4 /* AppDelegate.swift */; };
@@ -18,14 +18,10 @@
 		6B0699F01AAFA790001F10C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B0699EE1AAFA790001F10C4 /* Main.storyboard */; };
 		6B0699F21AAFA791001F10C4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B0699F11AAFA791001F10C4 /* Images.xcassets */; };
 		6B0699F51AAFA791001F10C4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B0699F31AAFA791001F10C4 /* LaunchScreen.xib */; };
-		6B069A011AAFA792001F10C4 /* TabBar_part1_SwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B069A001AAFA792001F10C4 /* TabBar_part1_SwiftTests.swift */; };
 		6B069A0C1AAFB698001F10C4 /* Phrase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B069A0B1AAFB698001F10C4 /* Phrase.swift */; };
 		6B069A0E1AAFB775001F10C4 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B069A0D1AAFB775001F10C4 /* Tag.swift */; };
 		6B069A121AAFB9BA001F10C4 /* RevisionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B069A111AAFB9BA001F10C4 /* RevisionViewController.swift */; };
 		6B069A1C1AAFBE5C001F10C4 /* ImportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B069A1B1AAFBE5C001F10C4 /* ImportViewController.swift */; };
-		6B069A1F1AB02E70001F10C4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B069A141AAFBCE7001F10C4 /* MapKit.framework */; };
-		6B069A201AB02EE4001F10C4 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B069A161AAFBDE3001F10C4 /* MessageUI.framework */; };
-		6B069A211AB02EE9001F10C4 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B069A181AAFBDE9001F10C4 /* Social.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +38,7 @@
 		3216CEB51C9FCB710013135F /* PhraseDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhraseDetailsViewController.swift; sourceTree = "<group>"; };
 		3216CEB81C9FE8AE0013135F /* DataStore_Core.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataStore_Core.xcdatamodel; sourceTree = "<group>"; };
 		325D797A1CA43F1800DF3013 /* PhraseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhraseTableViewCell.swift; sourceTree = "<group>"; };
-		325D797C1CA4A26500DF3013 /*  CheckBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = " CheckBox.swift"; sourceTree = "<group>"; };
+		32BD3BEC1CC425B5005FB1A7 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		32F443FB1CAAE87E00AFB45D /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Question.swift; path = "Data Files/Question.swift"; sourceTree = "<group>"; };
 		32F443FD1CAB2F1600AFB45D /* RevisionCompletionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RevisionCompletionViewController.swift; sourceTree = "<group>"; };
 		6B0699E31AAFA790001F10C4 /* LanguageReviser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LanguageReviser.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -54,13 +50,9 @@
 		6B0699F41AAFA791001F10C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		6B0699FA1AAFA791001F10C4 /* LanguageReviser.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LanguageReviser.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B0699FF1AAFA792001F10C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6B069A001AAFA792001F10C4 /* TabBar_part1_SwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar_part1_SwiftTests.swift; sourceTree = "<group>"; };
 		6B069A0B1AAFB698001F10C4 /* Phrase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Phrase.swift; sourceTree = "<group>"; };
 		6B069A0D1AAFB775001F10C4 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		6B069A111AAFB9BA001F10C4 /* RevisionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RevisionViewController.swift; sourceTree = "<group>"; };
-		6B069A141AAFBCE7001F10C4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		6B069A161AAFBDE3001F10C4 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		6B069A181AAFBDE9001F10C4 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		6B069A1B1AAFBE5C001F10C4 /* ImportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -69,9 +61,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6B069A211AB02EE9001F10C4 /* Social.framework in Frameworks */,
-				6B069A201AB02EE4001F10C4 /* MessageUI.framework in Frameworks */,
-				6B069A1F1AB02E70001F10C4 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,9 +77,7 @@
 		6B0699DA1AAFA790001F10C4 = {
 			isa = PBXGroup;
 			children = (
-				6B069A181AAFBDE9001F10C4 /* Social.framework */,
-				6B069A161AAFBDE3001F10C4 /* MessageUI.framework */,
-				6B069A141AAFBCE7001F10C4 /* MapKit.framework */,
+				32BD3BEC1CC425B5005FB1A7 /* Default-568h@2x.png */,
 				6B0699E51AAFA790001F10C4 /* LanguageReviser-Swift */,
 				6B0699FD1AAFA791001F10C4 /* LanguageReviser-SwiftTests */,
 				6B0699E41AAFA790001F10C4 /* Products */,
@@ -113,14 +100,13 @@
 				6B069A131AAFB9C5001F10C4 /* View Controllers */,
 				6B0699E81AAFA790001F10C4 /* AppDelegate.swift */,
 				6B0699EE1AAFA790001F10C4 /* Main.storyboard */,
-				325D797C1CA4A26500DF3013 /*  CheckBox.swift */,
 				3216CEB71C9FE8AE0013135F /* DataStore_Core.xcdatamodeld */,
 				6B0699F11AAFA791001F10C4 /* Images.xcassets */,
 				6B0699F31AAFA791001F10C4 /* LaunchScreen.xib */,
 				6B0699E61AAFA790001F10C4 /* Supporting Files */,
 			);
 			name = "LanguageReviser-Swift";
-			path = "TabBar-part1-Swift";
+			path = "LanguageRevisor-Swift";
 			sourceTree = "<group>";
 		};
 		6B0699E61AAFA790001F10C4 /* Supporting Files */ = {
@@ -134,11 +120,10 @@
 		6B0699FD1AAFA791001F10C4 /* LanguageReviser-SwiftTests */ = {
 			isa = PBXGroup;
 			children = (
-				6B069A001AAFA792001F10C4 /* TabBar_part1_SwiftTests.swift */,
 				6B0699FE1AAFA792001F10C4 /* Supporting Files */,
 			);
 			name = "LanguageReviser-SwiftTests";
-			path = "TabBar-part1-SwiftTests";
+			path = "LanguageRevisor-SwiftTests";
 			sourceTree = "<group>";
 		};
 		6B0699FE1AAFA792001F10C4 /* Supporting Files */ = {
@@ -255,6 +240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6B0699F01AAFA790001F10C4 /* Main.storyboard in Resources */,
+				32BD3BED1CC425B5005FB1A7 /* Default-568h@2x.png in Resources */,
 				6B0699F51AAFA791001F10C4 /* LaunchScreen.xib in Resources */,
 				6B0699F21AAFA791001F10C4 /* Images.xcassets in Resources */,
 			);
@@ -279,7 +265,6 @@
 				3216CEB91C9FE8AE0013135F /* DataStore_Core.xcdatamodeld in Sources */,
 				6B069A0C1AAFB698001F10C4 /* Phrase.swift in Sources */,
 				32F443FC1CAAE87E00AFB45D /* Question.swift in Sources */,
-				325D797D1CA4A26500DF3013 /*  CheckBox.swift in Sources */,
 				6B069A121AAFB9BA001F10C4 /* RevisionViewController.swift in Sources */,
 				6B069A0E1AAFB775001F10C4 /* Tag.swift in Sources */,
 				6B0699E91AAFA790001F10C4 /* AppDelegate.swift in Sources */,
@@ -293,7 +278,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6B069A011AAFA792001F10C4 /* TabBar_part1_SwiftTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,7 +393,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = "TabBar-part1-Swift/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/LanguageRevisor-Swift/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = uk.ac.aber.dcs.LanguageReviser;
@@ -421,7 +405,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = "TabBar-part1-Swift/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/LanguageRevisor-Swift/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = uk.ac.aber.dcs.LanguageReviser;
