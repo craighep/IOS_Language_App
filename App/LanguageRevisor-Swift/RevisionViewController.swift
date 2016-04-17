@@ -166,7 +166,7 @@ class RevisionViewControler: UIViewController, UIPickerViewDataSource, UIPickerV
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
-        if(questions.count > 10){
+        if(questions.count > 9){
         questions[currentQuestion].givenAnswer = questions[currentQuestion].possibleAnswers[row]
         }
     }
